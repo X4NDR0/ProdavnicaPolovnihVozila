@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ProdavnicaPolovnihVozila.Services;
 
 namespace ProdavnicaPolovnihVozila
 {
@@ -6,7 +6,8 @@ namespace ProdavnicaPolovnihVozila
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ProdavnicaPolovnihVozilaService ppvs = new ProdavnicaPolovnihVozilaService();
+            ppvs.Login();
         }
     }
 }
