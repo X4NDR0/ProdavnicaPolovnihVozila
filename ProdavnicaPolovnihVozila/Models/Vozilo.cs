@@ -1,4 +1,5 @@
-﻿namespace ProdavnicaPolovnihVozila.Models
+﻿using ProdavnicaPolovnihVozila.Enums;
+namespace ProdavnicaPolovnihVozila.Models
 {
     public class Vozilo
     {
@@ -6,7 +7,7 @@
         public string Naslov;
         public double Cena;
         public Kategorija Kategorija;
-        //Stanje prodaje enum
+        public StanjeProdaje StanjeProdaje;
         public string Opis;
     }
 }

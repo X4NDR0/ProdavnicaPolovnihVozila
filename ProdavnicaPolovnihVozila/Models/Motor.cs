@@ -1,9 +1,10 @@
-﻿namespace ProdavnicaPolovnihVozila.Models
+﻿using ProdavnicaPolovnihVozila.Enums;
+namespace ProdavnicaPolovnihVozila.Models
 {
     public class Motor
     {
         public int Kubikaza;
         public int Snaga;
-        //Enum tip goriva
+        public FuelType FuelType;
     }
 }
