@@ -292,7 +292,23 @@ namespace ProdavnicaPolovnihVozila.Services
 
         public void DodajKategoriju()
         {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int idKategorije);
 
+            Console.Write("Unesite naziv:");
+            string nazivKategorije = Console.ReadLine();
+
+            Console.Write("Unesite opis:");
+            string opisKategorije = Console.ReadLine();
+
+            Kategorija kategorijaAdd = new Kategorija
+            {
+                ID = idKategorije,
+                Naziv = nazivKategorije,
+                Opis = opisKategorije,
+            };
+
+            ListaKategorija.Add(kategorijaAdd);
         }
 
         public void LoadData()
