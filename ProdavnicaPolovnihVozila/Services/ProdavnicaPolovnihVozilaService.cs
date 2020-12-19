@@ -168,15 +168,83 @@ namespace ProdavnicaPolovnihVozila.Services
                 return;
             }
 
-            Motor motorAdd = new Motor { Snaga = snagaMotora, Kubikaza = kubikazaMotora,FuelType = fuelType};
-            PutnickoVozilo putnickoVoziloAdd = new PutnickoVozilo {ID = idOglasa,Naslov = naslovOglasa,Cena = cenaVozila,Kategorija = kategorijaAdd,Opis = opisVozila,Marka = markaVozila,BrojVrata = brojVrata,Model = modelVozila,Motor = motorAdd,StanjeProdaje = StanjeProdaje.NijeProdato,ListaOpreme = listaOpreme};
+            PutnickoVozilo putnickoVoziloAdd = new PutnickoVozilo
+            {
+                ID = idOglasa,
+                Naslov = naslovOglasa,
+                Cena = cenaVozila,
+                Kategorija = kategorijaAdd,
+                Opis = opisVozila,
+                Marka = markaVozila,
+                BrojVrata = brojVrata,
+                Model = modelVozila,
+                Motor = new Motor
+                {
+                    Snaga = snagaMotora,
+                    Kubikaza = kubikazaMotora,
+                    FuelType = fuelType
+
+                },
+                StanjeProdaje = StanjeProdaje.NijeProdato,
+                ListaOpreme = listaOpreme
+            };
 
             ListaVozila.Add(putnickoVoziloAdd);
         }
 
         public void DodajMotocikl()
         {
+            FuelType fuelType;
 
+            Console.Write("Unesite id oglasa:");
+            int.TryParse(Console.ReadLine(), out int idOglasa);
+
+            Console.Write("Unesite naslov oglasa:");
+            string naslovOglasa = Console.ReadLine();
+
+            Console.Write("Unesite cenu vozila:");
+            double.TryParse(Console.ReadLine(), out double cenaVozila);
+
+            Console.Write("Unesite id kategorije:");
+            int.TryParse(Console.ReadLine(), out int idKategorije);
+
+            Console.Write("Unesite opis vozila:");
+            string opisVozila = Console.ReadLine();
+
+            Console.Write("Unesite kubikazu motora:");
+            int.TryParse(Console.ReadLine(), out int kubikazaMotora);
+
+            Console.Write("Unesite snagu motora:");
+            int.TryParse(Console.ReadLine(), out int snagaMotora);
+
+            Console.Write("Unesite tip goriva(Dizel,Benzin,Gas):");
+            Enum.TryParse(Console.ReadLine(), out fuelType);
+
+            Kategorija kategorija = ListaKategorija.Where(x => x.ID == idKategorije).FirstOrDefault();
+
+            if (kategorija == null)
+            {
+                Console.WriteLine("Izabrana kategorija ne postoji.");
+                return;
+            }
+
+
+            Motocikl motociklAdd = new Motocikl
+            {
+                ID = idOglasa,
+                Naslov = naslovOglasa,
+                Cena = cenaVozila,
+                Kategorija = kategorija,
+                Opis = opisVozila,
+                Motor = new Motor
+                {
+                    Kubikaza = kubikazaMotora,
+                    Snaga = snagaMotora,
+                    FuelType = fuelType,
+                },
+            };
+
+            ListaVozila.Add(motociklAdd);
         }
 
         public void DodajBicikl()
