@@ -242,6 +242,7 @@ namespace ProdavnicaPolovnihVozila.Services
                     Snaga = snagaMotora,
                     FuelType = fuelType,
                 },
+                StanjeProdaje = StanjeProdaje.NijeProdato,
             };
 
             ListaVozila.Add(motociklAdd);
@@ -249,7 +250,44 @@ namespace ProdavnicaPolovnihVozila.Services
 
         public void DodajBicikl()
         {
+            Console.Write("Unesite id oglasa:");
+            int.TryParse(Console.ReadLine(), out int idOglasa);
 
+            Console.Write("Unesite naslov oglasa:");
+            string naslovOglasa = Console.ReadLine();
+
+            Console.Write("Unesite cenu vozila:");
+            double.TryParse(Console.ReadLine(), out double cenaVozila);
+
+            Console.Write("Unesite id kategorije:");
+            int.TryParse(Console.ReadLine(), out int idKategorije);
+
+            Console.Write("Unesite opis vozila:");
+            string opisVozila = Console.ReadLine();
+
+            Console.Write("Unesite broj brzina:");
+            int.TryParse(Console.ReadLine(), out int brojBrzina);
+
+            Kategorija kategorija = ListaKategorija.Where(x => x.ID == idKategorije).FirstOrDefault();
+
+            if (kategorija == null)
+            {
+                Console.WriteLine("Kategorija koju ste izabrali ne postoji!");
+                return;
+            }
+
+            Bicikl biciklAdd = new Bicikl
+            {
+                ID = idOglasa,
+                Naslov = naslovOglasa,
+                Cena = cenaVozila,
+                Kategorija = kategorija,
+                Opis = opisVozila,
+                BrojBrzina = brojBrzina,
+                StanjeProdaje = StanjeProdaje.NijeProdato,
+            };
+
+            ListaVozila.Add(biciklAdd);
         }
 
         public void DodajKategoriju()
