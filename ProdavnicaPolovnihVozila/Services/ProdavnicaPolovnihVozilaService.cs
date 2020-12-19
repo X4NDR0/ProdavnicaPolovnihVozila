@@ -217,7 +217,7 @@ namespace ProdavnicaPolovnihVozila.Services
             Console.Write("Unesite snagu motora:");
             int.TryParse(Console.ReadLine(), out int snagaMotora);
 
-            Console.Write("Unesite tip goriva(Dizel,Benzin,Gas):");
+            Console.Write("Unesite tip goriva(Dizel,Benzin,Gas)L");
             Enum.TryParse(Console.ReadLine(), out fuelType);
 
             Kategorija kategorija = ListaKategorija.Where(x => x.ID == idKategorije).FirstOrDefault();
