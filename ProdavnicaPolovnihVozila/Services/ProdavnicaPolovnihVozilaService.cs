@@ -186,6 +186,7 @@ namespace ProdavnicaPolovnihVozila.Services
 
                 },
                 StanjeProdaje = StanjeProdaje.NijeProdato,
+                StanjeEntitija = StanjeEntitija.Aktivan,
                 ListaOpreme = listaOpreme
             };
 
@@ -243,6 +244,7 @@ namespace ProdavnicaPolovnihVozila.Services
                     FuelType = fuelType,
                 },
                 StanjeProdaje = StanjeProdaje.NijeProdato,
+                StanjeEntitija = StanjeEntitija.Aktivan,
             };
 
             ListaVozila.Add(motociklAdd);
@@ -285,6 +287,7 @@ namespace ProdavnicaPolovnihVozila.Services
                 Opis = opisVozila,
                 BrojBrzina = brojBrzina,
                 StanjeProdaje = StanjeProdaje.NijeProdato,
+                StanjeEntitija = StanjeEntitija.Aktivan,
             };
 
             ListaVozila.Add(biciklAdd);
@@ -310,6 +313,109 @@ namespace ProdavnicaPolovnihVozila.Services
 
             ListaKategorija.Add(kategorijaAdd);
         }
+
+        public void DeleteEntitys()
+        {
+            Console.WriteLine("1.Obrisi putnicko vozilo");
+            Console.WriteLine("2.Obrisi motocikl");
+            Console.WriteLine("3.Obrisi bicikl");
+            Console.WriteLine("4.Obrisi kategoriju");
+            Console.Write("Opcija:");
+            int.TryParse(Console.ReadLine(), out int opcija);
+
+            switch (opcija)
+            {
+                case 1:
+                    ObrisiPutnickoVozilo();
+                    break;
+
+                case 2:
+                    ObrisiMotocikl();
+                    break;
+
+                case 3:
+                    ObrisiBicikl();
+                    break;
+
+                case 4:
+                    ObrisiKategoriju();
+                    break;
+
+
+                default:
+                    Console.WriteLine("Izabrana opcija ne postoji!");
+                    break;
+            }
+        }
+
+        public void ObrisiPutnickoVozilo()
+        {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int idVozila);
+
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo is PutnickoVozilo)
+                {
+                    if (vozilo.ID == idVozila)
+                    {
+                        vozilo.StanjeEntitija = StanjeEntitija.Obrisan;
+                        //Save
+                    }
+                }
+            }
+        }
+
+        public void ObrisiMotocikl()
+        {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int idVozila);
+
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo is Motocikl)
+                {
+                    if (vozilo.ID == idVozila)
+                    {
+                        vozilo.StanjeEntitija = StanjeEntitija.Obrisan;
+                        //Save
+                    }
+                }
+            }
+        }
+
+        public void ObrisiBicikl()
+        {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int idVozila);
+
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo is Bicikl)
+                {
+                    if (vozilo.ID == idVozila)
+                    {
+                        vozilo.StanjeEntitija = StanjeEntitija.Obrisan;
+                        //Save
+                    }
+                }
+            }
+        }
+
+        public void ObrisiKategoriju()
+        {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int idKategorije);
+
+            foreach (Kategorija kategorija in ListaKategorija)
+            {
+                if (kategorija.ID == idKategorije)
+                {
+                    kategorija.StanjeEntitija = StanjeEntitija.Aktivan;
+                }
+            }
+        }
+
 
         public void LoadData()
         {

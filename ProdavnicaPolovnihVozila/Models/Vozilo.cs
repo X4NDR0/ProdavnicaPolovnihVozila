@@ -9,5 +9,6 @@ namespace ProdavnicaPolovnihVozila.Models
         public Kategorija Kategorija;
         public StanjeProdaje StanjeProdaje;
         public string Opis;
+        public StanjeEntitija StanjeEntitija;
     }
 }
