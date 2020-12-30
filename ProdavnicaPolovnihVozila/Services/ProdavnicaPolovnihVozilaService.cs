@@ -412,6 +412,60 @@ namespace ProdavnicaPolovnihVozila.Services
                 if (kategorija.ID == idKategorije)
                 {
                     kategorija.StanjeEntitija = StanjeEntitija.Aktivan;
+                    //Save
+                }
+            }
+        }
+
+        public void WriteAllEntitys()
+        {
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
+            }
+        }
+
+        public void WriteExitsEntitys()
+        {
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo.StanjeEntitija == StanjeEntitija.Aktivan)
+                {
+                    Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
+                }
+            }
+        }
+
+        public void WriteDeletedEntitys()
+        {
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo.StanjeEntitija == StanjeEntitija.Obrisan)
+                {
+                    Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
+
+                }
+            }
+        }
+
+        public void IspisiProdataVozila()
+        {
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo.StanjeProdaje == StanjeProdaje.Prodato)
+                {
+                    Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
+                }
+            }
+        }
+
+        public void IspisiNeprodataVozila()
+        {
+            foreach (Vozilo vozilo in ListaVozila)
+            {
+                if (vozilo.StanjeProdaje == StanjeProdaje.NijeProdato)
+                {
+                    Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
                 }
             }
         }
