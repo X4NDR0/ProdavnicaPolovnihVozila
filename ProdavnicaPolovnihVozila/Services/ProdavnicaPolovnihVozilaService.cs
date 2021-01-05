@@ -56,11 +56,39 @@ namespace ProdavnicaPolovnihVozila.Services
                 switch (opcije)
                 {
                     case Options.UnosEntitija:
-
+                        AddEntitys();
                         break;
 
                     case Options.BrisanjeEntitija:
+                        DeleteEntitys();
+                        break;
 
+                    case Options.IspisiSveEntitije:
+                        WriteAllEntitys();
+                        break;
+
+                    case Options.IspisiPostojeceEntitije:
+                        WriteExitsEntitys();
+                        break;
+
+                    case Options.IspisiObrisaneEntitije:
+                        WriteDeletedEntitys();
+                        break;
+
+                    case Options.IspisiProdataVozila:
+                        IspisiProdataVozila();
+                        break;
+
+                    case Options.IspisiVozilaKojaNisuProdata:
+                        IspisiNeprodataVozila();
+                        break;
+
+                    case Options.IspisiKategorijePoSifri:
+                        WriteCategoryByID();
+                        break;
+
+                    case Options.IspisiKategorijePoNazivu:
+                        WriteCategoryByName();
                         break;
 
                     case Options.Exit:
@@ -74,7 +102,7 @@ namespace ProdavnicaPolovnihVozila.Services
             } while (opcije != 0);
         }
 
-        public void AddEntity()
+        public void AddEntitys()
         {
             Console.WriteLine("1.Dodaj putnicko vozilo");
             Console.WriteLine("2.Dodaj motocikl");
@@ -466,6 +494,34 @@ namespace ProdavnicaPolovnihVozila.Services
                 if (vozilo.StanjeProdaje == StanjeProdaje.NijeProdato)
                 {
                     Console.WriteLine(vozilo.ID + " " + vozilo.Naslov + " " + vozilo.Cena + " " + vozilo.Kategorija.Naziv + " " + vozilo.Opis);
+                }
+            }
+        }
+
+        public void WriteCategoryByID()
+        {
+            Console.Write("Unesite ID:");
+            int.TryParse(Console.ReadLine(), out int id);
+
+            foreach (Kategorija kategorija in ListaKategorija)
+            {
+                if (kategorija.ID == id)
+                {
+                    Console.WriteLine(kategorija.ID + " " + kategorija.Naziv + " " + kategorija.Opis);
+                }
+            }
+        }
+
+        public void WriteCategoryByName()
+        {
+            Console.Write("Unesite naziv:");
+            string naziv = Console.ReadLine();
+
+            foreach (Kategorija kategorija in ListaKategorija)
+            {
+                if (kategorija.Naziv.ToLower().Equals(naziv.ToLower()))
+                {
+                    Console.WriteLine(kategorija.ID + " " + kategorija.Naziv + " " + kategorija.Opis);
                 }
             }
         }
